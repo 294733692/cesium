@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import viewer from '@/views/base/viewer.vue'
+import viewer from '@/views/layout.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,7 +7,14 @@ const router = createRouter({
     {
       path: '/',
       name: 'viewer',
-      component: viewer
+      component: viewer,
+      children: [
+        {
+          path: '/imageryLayer',
+          name: 'imageryLayer',
+          component: import('@/views/base/ImageryLayer.vue')
+        }
+      ]
     },
   ]
 })

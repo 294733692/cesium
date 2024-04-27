@@ -1,12 +1,15 @@
 <template>
-    <div id="cesiumContainer"></div>
+  <div id="cesiumContainer"></div>
+  <router-view/>
 </template>
 
 <script setup lang="ts">
-import { Viewer, Ion, } from 'cesium';
-import { onMounted, ref } from 'vue';
+import {useCesiumViewer} from '@/store/cesiumViewer'
+import {Viewer, Ion,} from 'cesium';
+import {onMounted, ref} from 'vue';
 import * as Cesium from "cesium";
 
+const cesiumStore = useCesiumViewer()
 
 
 // 设置AccessToken
@@ -32,37 +35,31 @@ const options = ref({
   // 地图选择器
   baseLayerPicker: false,
   // 基础地图
-  baseLayer:  new Cesium.ImageryLayer(new Cesium.UrlTemplateImageryProvider({
+  baseLayer: new Cesium.ImageryLayer(new Cesium.UrlTemplateImageryProvider({
     url: "http://webst01.is.autonavi.com/appmaptile?style=6&x={x}&y={y}&z={z}",
     minimumLevel: 1,
     maximumLever: 18
   }))
 })
 
-// 添加 地名+路网
-const imageLayer = new Cesium.ImageryLayer(new Cesium.UrlTemplateImageryProvider({
-  url: "http://webst01.is.autonavi.com/appmaptile?style=8&x={x}&y={y}&z={z}",
-  minimumLevel: 1,
-  maximumLever: 18
-}))
 
 
 const initViewer = () => {
   cesiumViewer.value = new Viewer("cesiumContainer", options.value)
-  cesiumViewer.value.imageryLayers.add(imageLayer)
+  cesiumStore.viewer = cesiumViewer.value
+  console.log(cesiumViewer.value === cesiumStore.viewer);
 }
 
 
-
 onMounted(() => {
-    initViewer()
+  initViewer()
 })
 </script>
 
 <style scoped lang="scss">
 #cesiumContainer {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 </style>
