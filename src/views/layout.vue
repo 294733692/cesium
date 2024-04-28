@@ -7,6 +7,8 @@
 import {useCesiumViewer} from '@/store/cesiumViewer'
 import {Viewer, Ion,} from 'cesium';
 import {onMounted, ref} from 'vue';
+import addImageryLayer from '@/utils/ImageryLayer'
+import {cameraSetView, cameraFlyTo} from '@/utils/Camera'
 import * as Cesium from "cesium";
 
 const cesiumStore = useCesiumViewer()
@@ -47,12 +49,13 @@ const options = ref({
 const initViewer = () => {
   cesiumViewer.value = new Viewer("cesiumContainer", options.value)
   cesiumStore.viewer = cesiumViewer.value
-  console.log(cesiumViewer.value === cesiumStore.viewer);
 }
 
 
 onMounted(() => {
   initViewer()
+  addImageryLayer(cesiumViewer.value)
+  cameraFlyTo(cesiumViewer.value)
 })
 </script>
 

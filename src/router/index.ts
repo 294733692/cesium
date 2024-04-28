@@ -7,14 +7,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'viewer',
-      component: viewer,
-      children: [
-        {
-          path: '/imageryLayer',
-          name: 'imageryLayer',
-          component: import('@/views/base/ImageryLayer.vue')
-        }
-      ]
+      component: viewer
     },
   ]
 })
