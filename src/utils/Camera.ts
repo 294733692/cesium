@@ -20,6 +20,6 @@ export const cameraFlyTo = (viewer: Cesium.Viewer) => {
       pitch: Cesium.Math.toRadians(-90), // 俯视角，默认-90，垂直向下
       roll: 0 // 旋转角
     },
-    duration: 5
+    duration: 2
   })
 }

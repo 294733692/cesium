@@ -1,5 +1,6 @@
 <template>
   <div id="cesiumContainer"></div>
+  <btnWrapper />
   <router-view/>
 </template>
 
@@ -10,6 +11,7 @@ import {onMounted, ref} from 'vue';
 import addImageryLayer from '@/utils/ImageryLayer'
 import {cameraSetView, cameraFlyTo} from '@/utils/Camera'
 import * as Cesium from "cesium";
+import btnWrapper from '@/components/btnWrapper.vue'
 
 const cesiumStore = useCesiumViewer()
 
@@ -40,7 +42,7 @@ const options = ref({
   baseLayer: new Cesium.ImageryLayer(new Cesium.UrlTemplateImageryProvider({
     url: "http://webst01.is.autonavi.com/appmaptile?style=6&x={x}&y={y}&z={z}",
     minimumLevel: 1,
-    maximumLever: 18
+    maximumLevel: 18
   }))
 })
 
@@ -55,7 +57,8 @@ const initViewer = () => {
 onMounted(() => {
   initViewer()
   addImageryLayer(cesiumViewer.value)
-  cameraFlyTo(cesiumViewer.value)
+  // cameraFlyTo(cesiumViewer.value)
+  cameraSetView(cesiumViewer.value)
 })
 </script>
 

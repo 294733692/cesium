@@ -18,6 +18,13 @@
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
+    "@turf/area": "^6.5.0",
+    "@turf/bbox": "^6.5.0",
+    "@turf/helpers": "^6.5.0",
+    "@turf/kinks": "^6.5.0",
+    "@turf/length": "^6.5.0",
+    "@turf/meta": "^6.5.0",
+    "@turf/turf": "^6.5.0",
     "@rushstack/eslint-patch": "^1.8.0",
     "@tsconfig/node20": "^20.1.4",
     "@types/node": "^20.12.5",
