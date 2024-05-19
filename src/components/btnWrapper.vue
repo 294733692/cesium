@@ -14,9 +14,11 @@ const cesiumStore = useCesiumViewer()
 let lineHandler
 
 const drawLine = () => {
-  console.log(DrawModelType.Line);
+  console.log(cesiumStore.viewer.scene.canvas);
   lineHandler = new DrawHandler(cesiumStore.viewer, DrawModelType.Line)
+  lineHandler.activeState()
 }
+
 
 </script>
 
